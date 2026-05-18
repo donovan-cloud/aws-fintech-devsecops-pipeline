@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo Installing security scanning utilities...
+      - pip install tfsec checkov
+  pre_build:
+    commands:
+      - echo Running Static Application Security Testing \(SAST\)...
+  build:
+    commands:
+      - echo Scanning Terraform files for compliance violations...
+      - checkov -d . --framework terraform
